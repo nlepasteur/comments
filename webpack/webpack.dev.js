@@ -1,8 +1,8 @@
 module.exports = {
-  mode: "development",
-  devtool: "eval-source-map",
+  mode: 'development',
+  devtool: 'eval-source-map',
   devServer: {
-    port: 3000,
+    port: 3001,
     open: true,
   },
 };

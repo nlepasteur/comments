@@ -1,0 +1,168 @@
+{
+  "comments": {
+    "data": [
+      {
+        "id": 0,
+        "parent_id": null,
+        "commentable_id": 10000,
+        "created_at": "",
+        "liked": true,
+        "likes_count": 1,
+        "text": "It rocks!!!",
+        "child_comments": [
+          {
+            "id": 4,
+            "commentable_id": 10000,
+            "parent_id": 0,
+            "created_at": "",
+            "liked": true,
+            "likes_count": 89,
+            "text": "agree",
+            "user": {
+              "id": 4,
+              "followed": false,
+              "full_name": "Anna L.",
+              "username": "Annalisa",
+              "headline": "Story teller",
+              "medium_avatar_url": "",
+              "small_cover_url": "",
+              "permalink": ""
+            }
+          },
+          {
+            "id": 5,
+            "commentable_id": 10000,
+            "parent_id": 0,
+            "created_at": "",
+            "liked": false,
+            "likes_count": 0,
+            "text": "agree",
+            "user": {
+              "id": 5,
+              "followed": false,
+              "full_name": "Tommaso P.",
+              "username": "tomp",
+              "headline": "Writer",
+              "medium_avatar_url": "",
+              "small_cover_url": "",
+              "permalink": ""
+            }
+          }
+        ],
+        "user": {
+          "id": 1989,
+          "commentable_id": 10000,
+          "followed": false,
+          "full_name": "Gigi F.",
+          "username": "gigif",
+          "headline": "Concept Artist",
+          "medium_avatar_url": "",
+          "small_cover_url": "",
+          "permalink": ""
+        }
+      },
+      {
+        "id": 1,
+        "commentable_id": 10000,
+        "parent_id": null,
+        "child_comments": [],
+        "created_at": "",
+        "liked": false,
+        "likes_count": 0,
+        "text": "Great job ;)",
+        "user": {
+          "id": 1,
+          "followed": false,
+          "full_name": "Anthony",
+          "username": "anthony",
+          "headline": "Illustrator",
+          "medium_avatar_url": "",
+          "small_cover_url": "",
+          "permalink": ""
+        }
+      },
+      {
+        "id": 2,
+        "commentable_id": 10000,
+        "parent_id": null,
+        "child_comments": [],
+        "created_at": "",
+        "liked": false,
+        "likes_count": 3,
+        "text": "best one yet!",
+        "user": {
+          "id": 2,
+          "followed": false,
+          "full_name": "Elodie",
+          "username": "elodie",
+          "headline": "Freelance Illustrator",
+          "medium_avatar_url": "",
+          "small_cover_url": "",
+          "permalink": ""
+        }
+      },
+      {
+        "id": 3,
+        "commentable_id": 10000,
+        "parent_id": null,
+        "child_comments": [],
+        "created_at": "",
+        "liked": true,
+        "likes_count": 3,
+        "text": "best one yet!",
+        "user": {
+          "id": 3,
+          "followed": false,
+          "full_name": "Elodie",
+          "username": "elodie",
+          "headline": "Freelance Illustrator",
+          "medium_avatar_url": "",
+          "small_cover_url": "",
+          "permalink": ""
+        }
+      }
+    ],
+    "total_count": 6
+  },
+  "likes": {
+    "data": [
+      {
+        "user": {
+          "projects_count": 15,
+          "followers_count": 1500,
+          "followed": false,
+          "plus_member": false,
+          "id": 100,
+          "username": "TL",
+          "full_name": "tlaw",
+          "headline": "VFX artist",
+          "medium_avatar_url": "",
+          "pro_member": false
+        },
+        "id": 1000,
+        "user_id": 100,
+        "votable_id": 13,
+        "created_at": ""
+      },
+      {
+        "user": {
+          "projects_count": 3,
+          "followers_count": 124,
+          "followed": false,
+          "plus_member": false,
+          "id": 101,
+          "username": "Barry W.",
+          "full_name": "barryw",
+          "headline": "designer",
+          "medium_avatar_url": "",
+          "pro_member": false
+        },
+        "id": 1001,
+        "user_id": 101,
+        "votable_id": 13,
+        "created_at": ""
+      }
+    ],
+    "total_count": 2
+  }
+}
