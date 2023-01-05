@@ -19,7 +19,7 @@ const LikesCountBtn: ComponentType<Props> = ({
       <Toggleable
         render={(show, toggle) => (
           <>
-            <button onClick={toggle}>
+            <button className="comment-likes-count" onClick={toggle}>
               <i></i>
               {likesCount} Like{likesCount > 1 && 's'}
             </button>

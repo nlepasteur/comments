@@ -1,12 +1,12 @@
-import type { Like } from 'types';
+import type { Like as LikeType } from 'types';
 
-import FollowBtn from 'components/FollowBtn';
+import Like from './Like/Like';
 
 type Props = {
   error: null | string;
   status: 'init' | 'fetching' | 'failure' | 'success';
-  likes: Like[];
-  updateLikes(likesUpdater: (likes: Like[]) => Like[]): void;
+  likes: LikeType[];
+  updateLikes(likesUpdater: (likes: LikeType[]) => LikeType[]): void;
   observeElement(ref: HTMLElement): void;
 };
 
@@ -25,12 +25,12 @@ const LikesList = ({
         <ul>
           {likes.map((like) => (
             <li key={like.id}>
-              A like{' '}
-              <FollowBtn
+              <Like {...props} like={like} />
+              {/* <FollowBtn
                 userId={like.user_id}
                 followed={like.user.followed}
-                updateLikes={props.updateLikes}
-              />
+                updateLikes={props.updateLikes} */}
+              {/* /> */}
             </li>
           ))}
         </ul>

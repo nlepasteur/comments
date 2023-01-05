@@ -1,4 +1,4 @@
-import withPostComment from './withPostComment';
+import withComment from '../withComment';
 import PostCommentForm from './PostCommentForm/PostCommentForm';
 
-export default withPostComment(PostCommentForm);
+export default withComment(PostCommentForm);

@@ -118,7 +118,7 @@ function withLikes<T>(
       },
       []
     );
-    console.log(rest);
+
     return (
       <UnwrappedComponent
         updateLikes={updateLikes}

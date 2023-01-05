@@ -1,3 +1,9 @@
+export type {
+  PostComment,
+  EditComment,
+  DeleteComment,
+} from 'components/Comments/comment';
+
 type ChildComment = {
   id: number;
   commentable_id: number;
@@ -34,6 +40,7 @@ export type Like = {
     headline: string;
     medium_avatar_url: string;
     pro_member: boolean;
+    permalink: string;
   };
   id: number;
   user_id: number;

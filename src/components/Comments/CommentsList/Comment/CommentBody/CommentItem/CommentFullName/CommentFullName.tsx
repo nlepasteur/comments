@@ -10,6 +10,10 @@ type Props = {
 const UserFullName: ComponentType<Props> = ({
   userFullName,
   userPermalink,
-}) => <Link to={userPermalink}>userFullName</Link>;
+}) => (
+  <Link className="comment-user" to={userPermalink}>
+    {userFullName}
+  </Link>
+);
 
 export default UserFullName;

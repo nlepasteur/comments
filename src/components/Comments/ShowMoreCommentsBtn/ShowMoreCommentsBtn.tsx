@@ -5,7 +5,7 @@ type Props = {
 
 const ShowMoreCommentsBtn = ({ restComments, getNextComments }: Props) => {
   return restComments ? (
-    <button onClick={getNextComments}>
+    <button className="show-more" onClick={getNextComments}>
       <i></i>Show more comments
     </button>
   ) : null;

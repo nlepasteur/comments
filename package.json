@@ -7,7 +7,8 @@
     "start": "webpack serve --config webpack/webpack.config.js --env env=dev",
     "json-server": "json-server --watch db.json",
     "test:components": "jest --watch --config=jest.config.ts --testPathPattern=__tests__/components",
-    "test:services": "jest --watch --testPathPattern=__tests__/services"
+    "test:services": "jest --watch --testPathPattern=__tests__/services",
+    "test:services2": "jest --watch --testPathPattern=__tests__/services2.0"
   },
   "repository": {
     "type": "git",
@@ -26,11 +27,19 @@
     "@babel/preset-react": "^7.18.6",
     "@babel/preset-typescript": "^7.18.6",
     "babel-loader": "^9.1.0",
+    "bootstrap": "^5.2.3",
+    "classnames": "^2.3.2",
+    "css-loader": "^6.7.3",
     "gsap": "^3.11.4",
     "html-webpack-plugin": "^5.5.0",
+    "json-loader": "^0.5.7",
+    "postcss-loader": "^7.0.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.6.1",
+    "sass": "^1.57.1",
+    "sass-loader": "^13.2.0",
+    "style-loader": "^3.3.1",
     "webpack": "^5.75.0"
   },
   "devDependencies": {

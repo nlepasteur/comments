@@ -9,7 +9,7 @@ type Props = {
 
 const CommentAvatar: ComponentType<Props> = ({ userAvatar, userPermalink }) => (
   <Link to={userPermalink}>
-    <img src={userAvatar} alt="user's avatar" />
+    <img className="avatar" src={userAvatar} alt="user's avatar" />
   </Link>
 );
 

@@ -2,8 +2,9 @@ import type { Comment } from 'types';
 
 // import CommentsCount from './CommentsCount/CommentsCount';
 import CommentsList from './CommentsList/CommentsList';
-import PostComment from './PostComment';
 import ShowMoreCommentsBtn from './ShowMoreCommentsBtn/ShowMoreCommentsBtn';
+import PostCommentForm from 'components/Comments/PostComment';
+import { addComment } from 'services/comments.service';
 
 type Props = {
   isLogged: boolean;
@@ -21,12 +22,19 @@ const Comments = ({
   getNextComments,
   ...props
 }: Props) => (
-  <div>
-    <CommentsList comments={comments} {...props} />
-    <PostComment userId={userId} parentId={null} {...props} />
+  <div className="col-lg-3 col-xl-4">
+    <CommentsList userId={userId} comments={comments} {...props} />
     <ShowMoreCommentsBtn
       restComments={commentsTotalCount > comments.length}
       getNextComments={getNextComments}
+    />
+
+    <PostCommentForm
+      {...props}
+      userId={userId}
+      parentId={null}
+      commentId={70}
+      commentsUpdater={addComment}
     />
   </div>
 );

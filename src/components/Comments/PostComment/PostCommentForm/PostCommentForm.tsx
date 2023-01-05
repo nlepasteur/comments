@@ -1,41 +1,54 @@
 import { useState } from 'react';
 
+import type { PostComment, EditComment, DeleteComment } from 'types';
+
 type Props = {
+  commentId: number;
   isLogged: boolean;
-  userId: number;
+  userId: null | number;
   parentId: null | number;
-  postComment(
-    text: string,
-    parentId: null | number,
-    userId: number
-  ): Promise<void>;
+  // commentableId: number;
+  comment(args: PostComment | EditComment | DeleteComment): Promise<void>;
+  close?(): void;
 };
 
 const PostCommentForm = ({
+  close,
   isLogged,
   userId,
   parentId,
-  postComment,
+  comment,
+  commentId,
 }: Props) => {
   const [text, setText] = useState('');
 
-  const submit = () => {
-    postComment(text, parentId, userId);
+  if (!isLogged && userId === null) {
+    return null;
+  }
+
+  const submit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    comment({
+      text,
+      userId,
+      commentId,
+      parentId,
+      source: 'direct',
+    } as Omit<Props, 'comment' | 'isLogged' | 'close'> & { userId: number });
     setText('');
+    if (close) {
+      close();
+    }
   };
 
   return (
-    <>
-      {isLogged ? (
-        <form onSubmit={submit}>
-          <textarea
-            value={text}
-            onChange={(e) => setText(e.target.value)}
-          ></textarea>
-          <button>Post comment</button>
-        </form>
-      ) : null}
-    </>
+    <form onSubmit={(e) => submit(e)}>
+      <textarea
+        value={text}
+        onChange={(e) => setText(e.target.value)}
+      ></textarea>
+      <button>Post comment</button>
+    </form>
   );
 };
 

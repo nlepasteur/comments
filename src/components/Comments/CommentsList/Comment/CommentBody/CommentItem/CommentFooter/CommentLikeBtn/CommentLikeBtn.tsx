@@ -13,7 +13,7 @@ const CommentLikeBtn: ComponentType<Props> = ({
   commentId,
   parentId,
 }) => (
-  <button onClick={() => like(commentId, parentId)}>
+  <button className="comment-like" onClick={() => like(commentId, parentId)}>
     {liked && <i></i>}
     {liked ? 'Liked' : 'Like'}
   </button>
