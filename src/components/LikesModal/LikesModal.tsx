@@ -1,6 +1,6 @@
 import type { Like } from 'types';
 
-import Modal from '../Modal/Modal';
+import Modal from 'components/Modal/Modal';
 import LikesList from './LikesList/LikesList';
 
 type Props = {
@@ -13,11 +13,7 @@ type Props = {
 };
 
 const LikesModal = ({ close, ...props }: Props) => (
-  <Modal
-    title="People Who Like This
-  "
-    close={close}
-  >
+  <Modal title="People Who Like This" close={close}>
     <LikesList {...props} />
   </Modal>
 );

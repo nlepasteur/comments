@@ -1,10 +1,20 @@
 $white: #f1f1f1;
 // colors
 $gray2: #222;
+$gray17: #171717;
 $gray74: #747474;
 $gray3: #333;
 $gray: #bbb;
-$blue: #13aff0;
+$gray-5d: #5d5d5d;
+//
+$white-btn-txt: #f1f1f1;
+$blue-btn-bg: #13aff0;
+$blue-btn-b: #0e9fdc;
+$blue-btn-bg-h: #0c8ec4;
+$blue-btn-b-h: #0a75a2;
+//
+$red-input-b: #c00;
+$red-input-bs: #f66;
 
 @mixin icon {
   padding-right: 0.4em;

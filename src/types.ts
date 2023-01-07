@@ -2,7 +2,18 @@ export type {
   PostComment,
   EditComment,
   DeleteComment,
-} from 'components/Comments/comment';
+} from 'src/componentsv1/Comments/comment';
+
+export type User = {
+  id: number;
+  followed: boolean;
+  full_name: string;
+  username: string;
+  headline: string;
+  medium_avatar_url: string;
+  small_cover_url: string;
+  permalink: string;
+};
 
 type ChildComment = {
   id: number;
@@ -12,16 +23,7 @@ type ChildComment = {
   liked: boolean;
   likes_count: number;
   text: string;
-  user: {
-    id: number;
-    followed: boolean;
-    full_name: string;
-    username: string;
-    headline: string;
-    medium_avatar_url: string;
-    small_cover_url: string;
-    permalink: string;
-  };
+  user: User;
 };
 
 export type Comment = {

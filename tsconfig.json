@@ -5,8 +5,7 @@
     "esModuleInterop": true,
     "baseUrl": ".",
     "paths": {
-      "*": ["*", "./src/*"],
-      "@types": ["./src/types"]
+      "*": ["*", "./src/*"]
     },
     "resolveJsonModule": true
   }

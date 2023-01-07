@@ -73,7 +73,7 @@ function withComments<T>(
     if (commentsTotalCount === null) {
       return null;
     }
-
+    console.log('comments : ', comments);
     return (
       <UnwrappedComponent
         comments={comments}

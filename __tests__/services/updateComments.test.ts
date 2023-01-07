@@ -1,6 +1,6 @@
 import type { Comment } from 'types';
 
-import { updateComments } from '../../src/services/comments.service';
+import { updateComments } from '../../src/services/comments.service1';
 
 const stubComments: Comment[] = [
   {

@@ -1,47 +1,89 @@
 import type { Comment as CommentType } from 'types';
 
-import classnames from 'classnames';
+import { useState, useCallback } from 'react';
 
-import Comment from './Comment/Comment';
+import Toggleable from 'components/Toggleable/Toggleable';
+import Comment from '../Comment/Comment';
+import CommentNested from '../Comment/CommentBody/CommentNested/CommentNested';
+import CommentForm from 'components/Comments/CommentForm/CommentFormContainer';
+
+import { addComment } from 'services/comments.service1';
 
 type Props = {
-  childComment?: boolean;
   isLogged: boolean;
-  userId: null | number;
+  userAvatarUrl: string;
   comments: CommentType[];
+  userId: null | number;
+
   updateComments(
-    commentsUpdater: (comments: CommentType[]) => CommentType[]
+    commentUpdater: (comments: CommentType[]) => CommentType[]
   ): void;
 };
 
-const CommentsList = ({ comments, ...props }: Props) => (
-  <ul
-    className={classnames(
-      {
-        'ps-4 pe-3': comments.every((comment) => comment.parent_id == null),
-      },
-      {
-        'child-comments': comments.every(
-          (comment) => comment.parent_id !== null
-        ),
-      }
-    )}
-  >
-    {comments.map((comment) => (
-      <li key={comment.id}>
-        <Comment {...props} comment={comment}>
-          {comment.child_comments ? (
-            <CommentsList
-              childComment
-              comments={comment.child_comments}
-              {...props}
+const CommentsList = ({ comments, isLogged, userId, ...props }: Props) => {
+  const [parentId, setParentId] = useState<null | number>(null);
+
+  const attachParentIdToReplyCommentForm = useCallback(
+    (parentId: null | number) => (toggleShowReplyCommentForm: () => void) => {
+      setParentId(parentId);
+      toggleShowReplyCommentForm();
+    },
+    []
+  );
+
+  return (
+    <ul className="comments">
+      {comments.map((comment) => (
+        <li key={comment.id}>
+          {
+            <Toggleable
+              render={(showReplyCommentForm, toggleShowReplyCommentForm) => (
+                // n'est pas réutilisé ce composant pour la liste de child-comments pour ne pas que soit créer une nouvelle instance de toggle pour chaque
+                <Comment
+                  attachParentIdToReplyCommentForm={
+                    attachParentIdToReplyCommentForm
+                  }
+                  isLogged={isLogged}
+                  comment={comment}
+                  userId={userId}
+                  toggleShowReplyCommentForm={toggleShowReplyCommentForm}
+                  {...props}
+                >
+                  <>
+                    <CommentNested
+                      attachParentIdToReplyCommentForm={
+                        attachParentIdToReplyCommentForm
+                      }
+                      isLogged={isLogged}
+                      userId={userId}
+                      comments={comment.child_comments!}
+                      toggleShowReplyCommentForm={toggleShowReplyCommentForm}
+                      {...props}
+                    />
+                    {showReplyCommentForm ? (
+                      <CommentForm
+                        toggleShowCommentForm={toggleShowReplyCommentForm}
+                        userId={userId!}
+                        commentUpdater={addComment}
+                        {...props}
+                        btnText="Post comment"
+                        url="/comments"
+                        parentId={parentId === null ? comment.id : parentId}
+                      >
+                        <button onClick={toggleShowReplyCommentForm}>
+                          <i></i>Cancel
+                        </button>
+                      </CommentForm>
+                    ) : null}
+                  </>
+                </Comment>
+              )}
             />
-          ) : //
-          null}
-        </Comment>
-      </li>
-    ))}
-  </ul>
-);
+          }
+        </li>
+      ))}
+    </ul>
+  );
+};
 
 export default CommentsList;

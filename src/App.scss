@@ -1,15 +1,21 @@
 @use 'base';
 
-$body-bg: #171717;
 $dark: black;
-$font-family-base: open sans, helvetica neue, Helvetica, Arial, sans-serif;
-$color: #bbb;
+$spacer: 20px;
 
 @import '../node_modules/bootstrap/scss/bootstrap';
 
-// reset
+:root {
+  font-size: 14px;
+}
+
+body {
+  line-height: 1.8;
+  letter-spacing: 0.015em;
+}
+
 a {
-  text-decoration: none;
+  cursor: pointer;
 }
 
 button {
@@ -17,47 +23,35 @@ button {
   border: none;
 }
 
-li {
-  list-style: none;
-}
-
-ul,
-p {
+ul {
   margin: 0;
   padding: 0;
+  list-style: none;
 }
 
 .avatar {
   border-radius: 50%;
+  align-self: flex-start;
+  object-fit: contain;
 }
 
-/**
- * comments
- */
-
-.comment {
-  margin-top: 12.5px;
-
-  &:not(:first-child) {
-    margin-top: 15px;
-  }
+// comment
+.comments-container {
+  background-color: base.$gray17;
 }
 
-.comment-body {
-  width: 100%;
+.comments > li:not(:first-child) {
+  margin-top: 15px;
 }
 
 .comment-item {
-  background-color: base.$gray2;
-  position: relative;
-  border-radius: 8px;
-  padding: 8px 10px;
+  background: base.$gray2;
 }
 
 .comment-user {
+  margin-bottom: 2px;
   color: base.$white;
   font-size: 14px;
-  margin: 0 0 2px;
   line-height: 1.45;
 
   &:hover {
@@ -69,27 +63,26 @@ p {
 .comment-headline {
   color: base.$gray74;
   font-size: 12px;
-  margin-bottom: 4px;
   line-height: 1.35;
+  margin-bottom: 4px;
 }
 
 .comment-text {
-  color: base.$gray;
   margin-bottom: 6px;
+  color: base.$gray;
 }
 
 .comment-footer {
   color: base.$gray74;
   font-size: 12px;
+  transition: color 0.2s cubic-bezier(0.55, 0.085, 0.68, 0.53);
 
   button {
-    color: base.$gray74;
-    transition: color 0.2s cubic-bezier(0.55, 0.085, 0.68, 0.53);
-  }
+    color: #747474;
 
-  button:hover,
-  button.active {
-    color: base.$white;
+    &:hover {
+      color: white;
+    }
   }
 
   li:not(:first-child)::before {
@@ -111,7 +104,7 @@ p {
   }
 }
 
-.comment-owner {
+.comment-dropdown {
   display: none;
   position: absolute;
   right: 10px;
@@ -125,12 +118,12 @@ p {
 }
 
 .comment-item:hover {
-  .comment-owner {
+  .comment-dropdown {
     display: block;
   }
 }
 
-.comment-dropdown {
+.comment-dropdown-menu {
   padding: 4px 0 4px;
   position: absolute;
   right: 5px;
@@ -143,38 +136,66 @@ p {
   padding: 5px 0;
 }
 
-.comment-dropdown-item {
+.comment-dropdown-menu button {
   width: 100%;
   text-align: left;
   font-size: 12px;
   padding: 5px 20px 5px 17px;
-  color: base.$gray74;
+  color: base.$gray;
   border-left: 3px solid transparent;
   transition: all 0.15s cubic-bezier(0.455, 0.03, 0.515, 0.955);
 }
 
-.comment-dropdown-item:hover {
-  border-color: base.$blue;
+.comment-dropdown-menu button:hover {
+  border-color: base.$blue-btn-bg;
   color: base.$white;
   background-color: $dark;
 }
 
-.child-comments {
-  border-left: 2px solid #242424;
-  padding-left: 8px;
-}
-
-.show-more {
-  margin-top: 15px;
-  padding: 4px 0 0 8px;
-  padding: 0;
+.comment-form button {
+  color: base.$white;
+  background-color: base.$blue-btn-bg;
+  border-color: base.$blue-btn-b;
+  font-weight: 400;
+  text-align: center;
+  vertical-align: middle;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: background-color 0.2s linear, color 0.2s linear,
+    border-color 0.2s linear;
+  padding: 5px 10px;
   font-size: 12px;
-  line-height: 1.6;
-  font-weight: 600;
-  transition: all 0.2s cubic-bezier(0.55, 0.085, 0.68, 0.53);
-  color: #747474;
+  line-height: 1.5;
+  border-radius: 3px;
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.65;
+  }
+
+  &:hover:not([disabled]) {
+    background-color: base.$blue-btn-bg-h;
+    border-color: base.$blue-btn-b-h;
+  }
 }
 
-.show-more-replies {
-  border-left: 2px solid #242424;
+.comment-form textarea {
+  background-color: transparent;
+  min-height: 100px;
+  border: 1px solid base.$gray3;
+  border-radius: 4px;
+  line-height: 1.4;
+  padding: 8px 10px;
+  transition: all 0.25s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+
+  &:focus {
+    border-color: base.$gray-5d;
+    outline: 0;
+    box-shadow: inset 0 1px 1px rgb(0 0 0 / 8%), 0 0 8px rgb(93 93 93 / 60%);
+  }
+}
+
+.has-error textarea:focus {
+  border-color: base.$red-input-b;
+  box-shadow: inset 0 1px 1px rgb(0 0 0 / 8%), 0 0 6px base.$red-input-bs;
 }

@@ -38,11 +38,7 @@ const SignupSigninModal: ComponentType<Props> = ({
         height: '100vh',
       }}
     >
-      <div
-        ref={modal}
-        className="modal"
-        style={{ color: 'white', position: 'absolute' }}
-      >
+      <div ref={modal} style={{ color: 'red', position: 'absolute' }}>
         <ModalHeader title={title} close={close} />
         <ModalBody>{children}</ModalBody>
       </div>

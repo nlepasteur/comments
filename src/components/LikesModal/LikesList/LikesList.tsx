@@ -16,27 +16,20 @@ const LikesList = ({
   likes,
   observeElement,
   ...props
-}: Props) => {
-  return (
-    <>
-      {status === 'init' || status === 'fetching' ? (
-        <div>spinner</div>
-      ) : (
-        <ul>
-          {likes.map((like) => (
-            <li key={like.id}>
-              <Like {...props} like={like} />
-              {/* <FollowBtn
-                userId={like.user_id}
-                followed={like.user.followed}
-                updateLikes={props.updateLikes} */}
-              {/* /> */}
-            </li>
-          ))}
-        </ul>
-      )}
-    </>
-  );
-};
+}: Props) => (
+  <>
+    {status === 'init' || status === 'fetching' ? (
+      <div>spinner</div>
+    ) : (
+      <ul>
+        {likes.map((like) => (
+          <li key={like.id}>
+            <Like {...props} like={like} />
+          </li>
+        ))}
+      </ul>
+    )}
+  </>
+);
 
 export default LikesList;
