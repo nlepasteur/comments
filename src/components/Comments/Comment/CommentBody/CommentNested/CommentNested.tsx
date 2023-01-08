@@ -9,6 +9,7 @@ type Props = {
   userId: null | number;
   userAvatarUrl: string;
   comments: Comment[];
+  showCommentReplyForm: boolean;
   updateComments(commentUpdater: (comments: Comment[]) => Comment[]): void;
   toggleShowReplyCommentForm(): void; // !!!
   attachParentIdToReplyCommentForm: (
@@ -22,11 +23,11 @@ const CommentNested = (props: Props) => {
     return null;
   }
   return (
-    <div className="comment-nested">
+    <div>
       {show ? (
         <ChildCommentsList {...props} />
       ) : (
-        <button onClick={toggle}>
+        <button className="show-more-btn" onClick={toggle}>
           <i></i>Show more replies
         </button>
       )}

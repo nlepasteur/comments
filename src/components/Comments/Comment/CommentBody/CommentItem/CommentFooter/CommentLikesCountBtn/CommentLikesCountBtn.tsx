@@ -19,17 +19,14 @@ const LikesCountBtn: ComponentType<Props> = ({
       <Toggleable
         render={(show, toggle) => (
           <>
-            <button className="comment-likes-count" onClick={toggle}>
+            <button
+              className="comment-likes-count"
+              onClick={() => (isLogged ? toggle() : console.log('fallback'))}
+            >
               <i></i>
               {likesCount} Like{likesCount > 1 && 's'}
             </button>
-            {show ? (
-              isLogged ? (
-                <LikesModal {...props} close={toggle} />
-              ) : (
-                <div>Fallback</div>
-              )
-            ) : null}
+            {show ? <LikesModal {...props} close={toggle} /> : null}
           </>
         )}
       />

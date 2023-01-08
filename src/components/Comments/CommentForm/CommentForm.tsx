@@ -82,23 +82,23 @@ const CommentForm = ({
   }, [text]);
 
   return (
-    <div className="d-flex comment-form">
+    <div className="d-flex comment-form mt-4">
       {!removeAvatar ? (
-        <img src={userAvatarUrl} alt="user's avatar" className="avatar me-3" />
+        <img src={userAvatarUrl} alt="user's avatar" className="avatar me-2" />
       ) : null}
       <form
-        className={classnames('comment-form container', {
+        className={classnames('comment-form d-flex flex-column flex-grow-1', {
           'has-error': hasError,
         })}
         onSubmit={handleSubmit}
       >
         <textarea
-          className="row"
+          className="mb-2"
           value={text}
           onChange={(e) => setText(e.target.value)}
           placeholder={placeholder}
         />
-        <button className="row" type="submit" disabled={!text.length}>
+        <button className="reply-btn" type="submit" disabled={!text.length}>
           <i>{btnText}</i>
         </button>
         {children}

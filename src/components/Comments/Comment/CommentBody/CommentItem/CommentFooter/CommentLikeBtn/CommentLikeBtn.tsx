@@ -15,7 +15,12 @@ const CommentLikeBtn: ComponentType<Props> = ({
   commentId,
   parentId,
 }) => (
-  <button className="comment-like" onClick={() => like(commentId, parentId)}>
+  <button
+    className="comment-like"
+    onClick={() =>
+      isLogged ? like(commentId, parentId) : console.log('fallback')
+    }
+  >
     {liked && <i></i>}
     {liked ? 'Liked' : 'Like'}
   </button>

@@ -1,6 +1,8 @@
 import type { ReactNode } from 'react';
 import type { Comment as CommentType } from 'types';
 
+import classnames from 'classnames';
+
 import { useToggle } from 'hooks/useToggle';
 
 import CommentItem from './CommentBody/CommentItem/CommentItem';
@@ -14,6 +16,7 @@ type Props = {
   userAvatarUrl: string;
   comment: CommentType;
   children?: ReactNode;
+  showCommentReplyForm: boolean;
   updateComments(
     commentUpdater: (comments: CommentType[]) => CommentType[]
   ): void;
@@ -33,12 +36,16 @@ const Comment = ({
 }: Props) => {
   const [showEditCommentForm, toggleShowEditCommentForm] = useToggle(false);
   return (
-    <div className="comment">
+    <div
+      className={classnames('comment', {
+        'has-child-comments': props.comment.child_comments?.length,
+      })}
+    >
       <div className="d-flex">
         <img
           src={props.comment.user.medium_avatar_url}
           alt="user's avatar"
-          className="avatar me-3"
+          className="avatar me-2"
         />
         <div className="comment-body w-100">
           {!showEditCommentForm ? (
@@ -64,7 +71,10 @@ const Comment = ({
               commentUpdater={replaceComment}
               url={`/comments/${props.comment.id}`}
             >
-              <button onClick={toggleShowEditCommentForm}>
+              <button
+                className="reply-cancel-btn"
+                onClick={toggleShowEditCommentForm}
+              >
                 <i></i>Cancel
               </button>
             </CommentForm>

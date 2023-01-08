@@ -7,6 +7,7 @@ type Props = {
   userId: null | number;
   userAvatarUrl: string;
   comments: CommentType[];
+  showCommentReplyForm: boolean;
   updateComments(
     commentUpdater: (comments: CommentType[]) => CommentType[]
   ): void;
@@ -18,7 +19,7 @@ type Props = {
 
 const ChildCommentsList = ({ comments, ...props }: Props) => (
   // reçoit toggleShowReplyCommentForm initialisé depuis commentaire parent, donc même référence
-  <ul>
+  <ul className="child-comments">
     {comments.map((comment) => (
       <li key={comment.id}>
         <Comment comment={comment} {...props} />

@@ -8,6 +8,7 @@ import CommentNested from '../Comment/CommentBody/CommentNested/CommentNested';
 import CommentForm from 'components/Comments/CommentForm/CommentFormContainer';
 
 import { addComment } from 'services/comments.service1';
+import { useToggle } from 'hooks/useToggle';
 
 type Props = {
   isLogged: boolean;
@@ -22,6 +23,7 @@ type Props = {
 
 const CommentsList = ({ comments, isLogged, userId, ...props }: Props) => {
   const [parentId, setParentId] = useState<null | number>(null);
+  // const [showMoreReplies, toggleShowMoreReplies] = useToggle(false);
 
   const attachParentIdToReplyCommentForm = useCallback(
     (parentId: null | number) => (toggleShowReplyCommentForm: () => void) => {
@@ -38,7 +40,6 @@ const CommentsList = ({ comments, isLogged, userId, ...props }: Props) => {
           {
             <Toggleable
               render={(showReplyCommentForm, toggleShowReplyCommentForm) => (
-                // n'est pas réutilisé ce composant pour la liste de child-comments pour ne pas que soit créer une nouvelle instance de toggle pour chaque
                 <Comment
                   attachParentIdToReplyCommentForm={
                     attachParentIdToReplyCommentForm
@@ -46,35 +47,42 @@ const CommentsList = ({ comments, isLogged, userId, ...props }: Props) => {
                   isLogged={isLogged}
                   comment={comment}
                   userId={userId}
+                  showCommentReplyForm={showReplyCommentForm}
                   toggleShowReplyCommentForm={toggleShowReplyCommentForm}
                   {...props}
                 >
                   <>
-                    <CommentNested
-                      attachParentIdToReplyCommentForm={
-                        attachParentIdToReplyCommentForm
-                      }
-                      isLogged={isLogged}
-                      userId={userId}
-                      comments={comment.child_comments!}
-                      toggleShowReplyCommentForm={toggleShowReplyCommentForm}
-                      {...props}
-                    />
-                    {showReplyCommentForm ? (
-                      <CommentForm
-                        toggleShowCommentForm={toggleShowReplyCommentForm}
-                        userId={userId!}
-                        commentUpdater={addComment}
+                    <div className="comment-nested">
+                      <CommentNested
+                        showCommentReplyForm={showReplyCommentForm}
+                        attachParentIdToReplyCommentForm={
+                          attachParentIdToReplyCommentForm
+                        }
+                        isLogged={isLogged}
+                        userId={userId}
+                        comments={comment.child_comments!}
+                        toggleShowReplyCommentForm={toggleShowReplyCommentForm}
                         {...props}
-                        btnText="Post comment"
-                        url="/comments"
-                        parentId={parentId === null ? comment.id : parentId}
-                      >
-                        <button onClick={toggleShowReplyCommentForm}>
-                          <i></i>Cancel
-                        </button>
-                      </CommentForm>
-                    ) : null}
+                      />
+                      {isLogged && showReplyCommentForm ? (
+                        <CommentForm
+                          toggleShowCommentForm={toggleShowReplyCommentForm}
+                          userId={userId!}
+                          commentUpdater={addComment}
+                          {...props}
+                          btnText="Post comment"
+                          url="/comments"
+                          parentId={parentId === null ? comment.id : parentId}
+                        >
+                          <button
+                            className="reply-cancel-btn"
+                            onClick={toggleShowReplyCommentForm}
+                          >
+                            <i></i>Cancel
+                          </button>
+                        </CommentForm>
+                      ) : null}
+                    </div>
                   </>
                 </Comment>
               )}

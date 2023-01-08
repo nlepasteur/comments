@@ -10,6 +10,7 @@ type Props = {
   liked: boolean;
   likesCount: number;
   parentId: null | number;
+  showCommentReplyForm: boolean;
   toggleShowReplyCommentForm(): void;
   updateComments(commentUpdater: (comments: Comment[]) => Comment[]): void;
   attachParentIdToReplyCommentForm: (

@@ -37,7 +37,7 @@ const Comments = ({
         url="/comments"
         btnText="Post comment"
         userId={userId}
-        parentId={null} // ici ol parent ID AINSI
+        parentId={null}
         commentUpdater={addComment}
         {...props}
       />

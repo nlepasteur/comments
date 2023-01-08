@@ -9,6 +9,7 @@ type Props = {
   isLogged: boolean;
   userId: null | number;
   comment: Comment;
+  showCommentReplyForm: boolean;
   toggleShowEditCommentForm(): void;
   toggleShowReplyCommentForm(): void;
   updateComments(commentUpdater: (comments: Comment[]) => Comment[]): void;
@@ -20,6 +21,7 @@ type Props = {
 const CommentItem = ({
   userId,
   comment,
+  showCommentReplyForm,
   toggleShowEditCommentForm,
   ...props
 }: Props) => {
@@ -39,6 +41,7 @@ const CommentItem = ({
         />
       ) : null}
       <CommentFooter
+        showCommentReplyForm={showCommentReplyForm}
         likesCount={comment.likes_count}
         commentId={comment.id}
         liked={comment.liked}
