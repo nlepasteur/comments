@@ -62,6 +62,10 @@ ul {
   margin-top: 15px;
 }
 
+.comment {
+  position: relative;
+}
+
 .comment-nested {
   border-left: 2px solid base.$gray29;
   padding: 4px 0 0 8px;
@@ -144,6 +148,10 @@ ul {
   }
 }
 
+.comment-dropdown.is-open {
+  display: block;
+}
+
 .comment-item:hover {
   .comment-dropdown {
     display: block;
@@ -211,7 +219,6 @@ ul {
 
 .comment-form {
   position: relative;
-  margin-top: 15px;
 }
 
 .comment-form textarea {
@@ -250,6 +257,10 @@ ul {
   }
 }
 
+.comments-container > .show-more-btn {
+  margin-bottom: 15px;
+}
+
 // modal
 .modal-background {
   background-color: rgba(0, 0, 0, 0.5);
@@ -263,13 +274,24 @@ ul {
 }
 
 .custom-modal {
-  width: 50%;
   position: absolute;
-  transform: translate(-50%);
+  transform: translateX(-50%);
   left: 50%;
   box-shadow: 0 5px 15px rgb(0 0 0 / 50%);
   background-color: base.$gray2;
   border-radius: 6px;
+}
+
+@media (min-width: 767px) {
+  .custom-modal {
+    min-width: 600px;
+  }
+}
+
+@media (max-width: 766px) {
+  .custom-modal {
+    width: 90vw;
+  }
 }
 
 .modal-item:not(:last-child) {
@@ -349,4 +371,34 @@ ul {
       content: '\f0c0';
     }
   }
+}
+
+// floating car
+.comment .floating-card {
+  display: none;
+  position: absolute;
+  z-index: 1051;
+  width: 347px;
+  height: 347px;
+  padding-bottom: 5px;
+  text-align: center;
+  background: base.$gray3;
+  border-radius: 2px;
+  box-shadow: 0 16px 40px 0 rgba(0, 0, 0, 0.8);
+
+  &::before {
+    content: '\f0d8';
+    font-size: 25px;
+    @include base.icon;
+    position: absolute;
+    color: base.$gray3;
+    top: 0;
+    left: 20px;
+    transform: translateY(-55%);
+  }
+}
+
+.floating-card.avatar-is-hover {
+  display: block;
+  transform: translate(-12px, 15px);
 }

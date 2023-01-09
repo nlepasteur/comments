@@ -1,10 +1,14 @@
 import type { ReactNode } from 'react';
 import type { Comment as CommentType } from 'types';
 
+import { useRef, createRef } from 'react';
+import { Link } from 'react-router-dom';
+
 import { useToggle } from 'hooks/useToggle';
 
 import CommentItem from './CommentBody/CommentItem/CommentItem';
 import CommentForm from 'components/Comments/CommentForm/CommentFormContainer';
+import FloatingCard from 'components/FloatingCard/FloatingCard';
 
 import { replaceComment } from 'services/comments.service';
 
@@ -33,14 +37,20 @@ const Comment = ({
   ...props
 }: Props) => {
   const [showEditCommentForm, toggleShowEditCommentForm] = useToggle(false);
+
+  // const floatingCardRef = createRef<HTMLDivElement>();
+  // const avatarRef = useRef(null);
+
   return (
     <div className="comment">
       <div className="d-flex">
-        <img
-          src={props.comment.user.medium_avatar_url}
-          alt="user's avatar"
-          className="avatar me-2"
-        />
+        <Link className="position-relative" to={props.comment.user.permalink}>
+          <img
+            src={props.comment.user.medium_avatar_url}
+            alt="user's avatar"
+            className="avatar me-2"
+          />
+        </Link>
         <div className="comment-body w-100">
           {!showEditCommentForm ? (
             <CommentItem

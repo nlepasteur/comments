@@ -1,5 +1,7 @@
 import type { Comment } from 'types';
 
+import classnames from 'classnames';
+
 import { useToggle } from 'hooks/useToggle';
 
 import DropDownMenu from './DropDownMenu/DropDownMenu';
@@ -16,9 +18,15 @@ const DropDown = ({
   updateComments,
 }: Props) => {
   const [showDropDownMenu, toggleShowDropDownMenu] = useToggle(false);
+  const [isOpen, toggleIsOpen] = useToggle(false);
+
+  const handleClick = () => {
+    toggleShowDropDownMenu();
+    toggleIsOpen();
+  };
   return (
-    <div className="comment-dropdown">
-      <button onClick={toggleShowDropDownMenu}>
+    <div className={classnames('comment-dropdown', { 'is-open': isOpen })}>
+      <button onClick={handleClick}>
         <i></i>
       </button>
       {showDropDownMenu ? (
