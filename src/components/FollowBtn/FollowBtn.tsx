@@ -5,7 +5,7 @@ type Props = {
 };
 
 const FollowBtn = ({ userId, followed, follow }: Props) => (
-  <button onClick={() => follow(userId)}>
+  <button className="follow-btn" onClick={() => follow(userId)}>
     <i></i>
     {followed ? 'Following' : 'Follow'}
   </button>

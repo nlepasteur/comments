@@ -18,7 +18,6 @@ type Props = {
 };
 
 const ChildCommentsList = ({ comments, ...props }: Props) => (
-  // reçoit toggleShowReplyCommentForm initialisé depuis commentaire parent, donc même référence
   <ul className="child-comments">
     {comments.map((comment) => (
       <li key={comment.id}>

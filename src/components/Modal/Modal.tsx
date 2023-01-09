@@ -14,11 +14,7 @@ type Props = {
   children: ReactNode;
 };
 
-const SignupSigninModal: ComponentType<Props> = ({
-  title,
-  close,
-  children,
-}) => {
+const CustomModal: ComponentType<Props> = ({ title, close, children }) => {
   const modal = useRef(null);
   useOnClickOutside(modal, close);
   useLayoutEffect(() => {
@@ -28,17 +24,8 @@ const SignupSigninModal: ComponentType<Props> = ({
       .to(modal.current, { y: '-50%', top: '50%' });
   }, []);
   return (
-    <div
-      style={{
-        backgroundColor: 'rgba(0,0,0,.5)',
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        width: '100vw',
-        height: '100vh',
-      }}
-    >
-      <div ref={modal} style={{ color: 'red', position: 'absolute' }}>
+    <div className="modal-background">
+      <div className="custom-modal" ref={modal}>
         <ModalHeader title={title} close={close} />
         <ModalBody>{children}</ModalBody>
       </div>
@@ -46,4 +33,4 @@ const SignupSigninModal: ComponentType<Props> = ({
   );
 };
 
-export default SignupSigninModal;
+export default CustomModal;

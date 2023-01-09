@@ -2,6 +2,7 @@
 
 $dark: black;
 $spacer: 20px;
+$font-family-base: open sans, helvetica neue, Helvetica, Arial, sans-serif;
 
 @import '../node_modules/bootstrap/scss/bootstrap';
 
@@ -11,11 +12,12 @@ $spacer: 20px;
 
 body {
   line-height: 1.8;
-  letter-spacing: 0.015em;
+  min-height: 100vh;
 }
 
 a {
   cursor: pointer;
+  text-decoration: none;
 }
 
 button {
@@ -38,6 +40,7 @@ ul {
 // comment
 .comments-container {
   background-color: base.$gray17;
+  min-height: 100vh;
 }
 
 @media (min-width: 992px) {
@@ -46,13 +49,17 @@ ul {
   }
 }
 
-.comments > li:not(:first-child),
-.child-comments > li {
-  margin-top: 15px;
+.has-child-comments.comment-item {
+  margin-bottom: 15px;
 }
 
-.comment.has-child-comments {
-  background-color: red;
+.comments {
+  margin-bottom: 15px;
+}
+
+.comments > li,
+.child-comments > li:nth-child(2) {
+  margin-top: 15px;
 }
 
 .comment-nested {
@@ -100,10 +107,10 @@ ul {
       color: white;
     }
   }
+}
 
-  li:not(:first-child)::before {
-    content: '•';
-  }
+.comment-item:not(:first-child)::before {
+  content: '•';
 }
 
 .comment-like {
@@ -194,10 +201,17 @@ ul {
   position: absolute;
   right: 0;
   bottom: 0;
+
+  i::before {
+    content: '\f00d';
+    @include base.icon;
+    color: base.$blue-btn-bg;
+  }
 }
 
 .comment-form {
   position: relative;
+  margin-top: 15px;
 }
 
 .comment-form textarea {
@@ -212,9 +226,7 @@ ul {
   transition: all 0.25s cubic-bezier(0.455, 0.03, 0.515, 0.955);
 
   &:focus {
-    border-color: base.$gray-5d;
     outline: 0;
-    box-shadow: inset 0 1px 1px rgb(0 0 0 / 8%), 0 0 8px rgb(93 93 93 / 60%);
   }
 }
 
@@ -223,6 +235,7 @@ ul {
   box-shadow: inset 0 1px 1px rgb(0 0 0 / 8%), 0 0 6px base.$red-input-bs;
 }
 
+// show more button
 .show-more-btn {
   padding: 0;
   font-size: 12px;
@@ -230,4 +243,110 @@ ul {
   font-weight: 600;
   transition: all 0.2s cubic-bezier(0.55, 0.085, 0.68, 0.53);
   color: #747474;
+
+  i::before {
+    content: '\f078';
+    @include base.icon;
+  }
+}
+
+// modal
+.modal-background {
+  background-color: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1000000;
+  overscroll-behavior: contain;
+}
+
+.custom-modal {
+  width: 50%;
+  position: absolute;
+  transform: translate(-50%);
+  left: 50%;
+  box-shadow: 0 5px 15px rgb(0 0 0 / 50%);
+  background-color: base.$gray2;
+  border-radius: 6px;
+}
+
+.modal-item:not(:last-child) {
+  margin-bottom: 15px;
+}
+
+.modal-item:not(:first-child) {
+  padding-top: 15px;
+  border-top: 1px solid base.$gray3;
+}
+
+.custom-modal-header {
+  color: base.$white;
+  background-color: base.$gray3;
+  border-bottom: none;
+  border-radius: 4px 4px 0 0;
+  padding: 10px 15px;
+
+  h3 {
+    font-weight: 300;
+    margin: 0;
+  }
+
+  i::before {
+    @include base.icon;
+    content: '\f00d';
+    padding: 0;
+  }
+}
+
+.custom-modal-body {
+  max-height: 400px;
+  padding: 15px;
+}
+
+.follow-btn {
+  @include base.btn();
+  align-self: center;
+
+  i::before {
+    color: base.$white;
+    content: '\e541';
+  }
+}
+
+.modal-user {
+  display: flex;
+  color: base.$gray74 {
+    color: #338de6;
+    transition: all 0.2s cubic-bezier(0.55, 0.085, 0.68, 0.53);
+  }
+
+  a:hover {
+    color: #0070e0;
+  }
+
+  .like-avatar {
+    vertical-align: center;
+  }
+
+  .like-headline {
+    color: #bbb;
+  }
+
+  .like-artworks-count {
+    margin-left: 10px;
+    i::before {
+      @include base.icon;
+      content: '\f87c';
+    }
+  }
+
+  .like-users {
+    margin-left: 10px;
+    i::before {
+      @include base.icon;
+      content: '\f0c0';
+    }
+  }
 }

@@ -1,6 +1,7 @@
 import type { Comment as CommentType } from 'types';
 
 import { useState, useCallback } from 'react';
+import classnames from 'classnames';
 
 import Toggleable from 'components/Toggleable/Toggleable';
 import Comment from '../Comment/Comment';
@@ -8,7 +9,6 @@ import CommentNested from '../Comment/CommentBody/CommentNested/CommentNested';
 import CommentForm from 'components/Comments/CommentForm/CommentFormContainer';
 
 import { addComment } from 'services/comments.service1';
-import { useToggle } from 'hooks/useToggle';
 
 type Props = {
   isLogged: boolean;
@@ -23,7 +23,6 @@ type Props = {
 
 const CommentsList = ({ comments, isLogged, userId, ...props }: Props) => {
   const [parentId, setParentId] = useState<null | number>(null);
-  // const [showMoreReplies, toggleShowMoreReplies] = useToggle(false);
 
   const attachParentIdToReplyCommentForm = useCallback(
     (parentId: null | number) => (toggleShowReplyCommentForm: () => void) => {

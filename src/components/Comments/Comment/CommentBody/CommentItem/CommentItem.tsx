@@ -1,6 +1,7 @@
 import type { Comment } from 'types';
 
 import { Link } from 'react-router-dom';
+import classnames from 'classnames';
 
 import DropDown from './DropDown/DropDown';
 import CommentFooter from './CommentFooter/CommentFooter';
@@ -26,7 +27,15 @@ const CommentItem = ({
   ...props
 }: Props) => {
   return (
-    <div className="comment-item position-relative rounded px-2 py-1 w-100">
+    <div
+      className={classnames(
+        'comment-item position-relative rounded px-2 py-1 w-100',
+        {
+          'has-child-comments':
+            comment.child_comments && comment.child_comments.length,
+        }
+      )}
+    >
       <Link className="comment-user" to={comment.user.permalink}>
         {comment.user.full_name}
       </Link>

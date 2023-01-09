@@ -3,6 +3,7 @@ import type { Comment } from 'types';
 // import CommentsCount from './CommentsCount/CommentsCount';
 import CommentsList from './CommentsList/CommentsList';
 import CommentForm from 'components/Comments/CommentForm/CommentFormContainer';
+import ShowMoreComments from './ShowMoreComments/ShowMoreComments';
 
 import { addComment } from 'services/comments.service';
 
@@ -30,6 +31,10 @@ const Comments = ({
       userId={userId}
       comments={comments}
       {...props}
+    />
+    <ShowMoreComments
+      restComments={commentsTotalCount > comments.length}
+      getNextComments={getNextComments}
     />
     {isLogged ? (
       <CommentForm

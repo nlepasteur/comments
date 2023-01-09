@@ -1,7 +1,7 @@
-import { ReactNode, useEffect } from 'react';
+import type { ReactNode } from 'react';
 import classnames from 'classnames';
 
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 type PostCommentArgs = {
   // text: string;
@@ -58,6 +58,8 @@ const CommentForm = ({
   const [text, setText] = useState(initialText);
   const [hasError, setHasError] = useState(false);
 
+  // const inputElement = useRef<HTMLTextAreaElement>(null);
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     commentRequest({ ...args, text });
@@ -81,8 +83,12 @@ const CommentForm = ({
     }
   }, [text]);
 
+  //  useEffect(() => {
+  //    inputElement.current!.focus();
+  //  }, []);
+
   return (
-    <div className="d-flex comment-form mt-4">
+    <div className="d-flex comment-form">
       {!removeAvatar ? (
         <img src={userAvatarUrl} alt="user's avatar" className="avatar me-2" />
       ) : null}
@@ -93,6 +99,7 @@ const CommentForm = ({
         onSubmit={handleSubmit}
       >
         <textarea
+          // ref={inputElement}
           className="mb-2"
           value={text}
           onChange={(e) => setText(e.target.value)}

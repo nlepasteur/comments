@@ -4,8 +4,8 @@ type Props = {
   children: ReactNode;
 };
 
-const ModalHeader = ({ children }: Props) => (
-  <div className="modal-body">{children}</div>
+const ModalBody = ({ children }: Props) => (
+  <div className="custom-modal-body">{children}</div>
 );
 
-export default ModalHeader;
+export default ModalBody;

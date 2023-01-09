@@ -23,7 +23,7 @@ const LikesList = ({
     ) : (
       <ul>
         {likes.map((like) => (
-          <li key={like.id}>
+          <li key={like.id} className="modal-item">
             <Like {...props} like={like} />
           </li>
         ))}

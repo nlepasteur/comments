@@ -1,8 +1,6 @@
 import type { ReactNode } from 'react';
 import type { Comment as CommentType } from 'types';
 
-import classnames from 'classnames';
-
 import { useToggle } from 'hooks/useToggle';
 
 import CommentItem from './CommentBody/CommentItem/CommentItem';
@@ -36,11 +34,7 @@ const Comment = ({
 }: Props) => {
   const [showEditCommentForm, toggleShowEditCommentForm] = useToggle(false);
   return (
-    <div
-      className={classnames('comment', {
-        'has-child-comments': props.comment.child_comments?.length,
-      })}
-    >
+    <div className="comment">
       <div className="d-flex">
         <img
           src={props.comment.user.medium_avatar_url}

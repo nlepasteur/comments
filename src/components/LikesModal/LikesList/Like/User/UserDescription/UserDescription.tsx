@@ -8,13 +8,19 @@ type Props = Pick<
 >;
 
 const UserDescription = (props: Props) => (
-  <div>
-    <div>
+  <div className="px-2">
+    <div className="d-flex">
       <Link to={props.permalink}>{props.full_name}</Link>
-      <span>{props.projects_count}</span>
-      <span>{props.followers_count}</span>
+      <span className="like-artworks-count">
+        <i></i>
+        {props.projects_count} Artworks
+      </span>
+      <span className="like-users">
+        <i></i>
+        {props.followers_count}Users
+      </span>
     </div>
-    <div>{props.headline}</div>
+    <div className="like-headline">{props.headline}</div>
   </div>
 );
 

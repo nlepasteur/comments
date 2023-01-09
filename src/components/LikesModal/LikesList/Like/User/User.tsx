@@ -19,7 +19,8 @@ const User = ({
     },
   },
 }: Props) => (
-  <div>
+  // <div className="d-flex flex-column">
+  <div className="modal-user">
     <UserAvatar medium_avatar_url={medium_avatar_url} permalink={permalink} />
     <UserDescription
       permalink={permalink}

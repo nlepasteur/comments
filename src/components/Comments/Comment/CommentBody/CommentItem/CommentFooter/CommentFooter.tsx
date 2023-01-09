@@ -25,7 +25,7 @@ const CommentFooter = ({
   ...props
 }: Props) => (
   <ul className="comment-footer d-flex">
-    <li>
+    <li className="comment-item">
       <CommentLikeBtn
         isLogged={isLogged}
         liked={props.liked}
@@ -35,7 +35,7 @@ const CommentFooter = ({
       />
     </li>
     {likesCount ? (
-      <li>
+      <li className="comment-item">
         <CommentLikesCountBtn
           isLogged={isLogged}
           likesCount={likesCount}
@@ -44,7 +44,7 @@ const CommentFooter = ({
       </li>
     ) : null}
     {isLogged ? (
-      <li>
+      <li className="comment-item">
         <ReplyBtn {...props} />
       </li>
     ) : null}
