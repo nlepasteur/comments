@@ -38,6 +38,7 @@ const CommentItem = ({
     >
       <Link className="comment-user" to={comment.user.permalink}>
         {comment.user.full_name}
+        {/*  */}
       </Link>
       <div className="comment-headline">{comment.user.headline}</div>
       <div className="comment-text">{comment.text}</div>

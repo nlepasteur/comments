@@ -58,14 +58,11 @@ const CommentForm = ({
   const [text, setText] = useState(initialText);
   const [hasError, setHasError] = useState(false);
 
-  // const inputElement = useRef<HTMLTextAreaElement>(null);
-
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     commentRequest({ ...args, text });
 
     setText('');
-    console.log('ATTEINT', toggleShowCommentForm);
     if (toggleShowCommentForm) {
       toggleShowCommentForm();
     }
@@ -83,10 +80,6 @@ const CommentForm = ({
     }
   }, [text]);
 
-  //  useEffect(() => {
-  //    inputElement.current!.focus();
-  //  }, []);
-
   return (
     <div className="d-flex comment-form">
       {!removeAvatar ? (
@@ -99,7 +92,6 @@ const CommentForm = ({
         onSubmit={handleSubmit}
       >
         <textarea
-          // ref={inputElement}
           className="mb-2"
           value={text}
           onChange={(e) => setText(e.target.value)}

@@ -21,7 +21,7 @@ const CustomModal: ComponentType<Props> = ({ title, close, children }) => {
     gsap
       .timeline()
       .set(modal.current, { y: '-100%' })
-      .to(modal.current, { y: '-50%', top: '50%' });
+      .to(modal.current, { y: '10%' });
   }, []);
   return (
     <div className="modal-background">
