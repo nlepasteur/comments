@@ -1,0 +1,71 @@
+$white: #f1f1f1;
+// colors
+
+$gray2: #222;
+$gray29: #292929;
+$gray17: #171717;
+$gray74: #747474;
+$gray3: #333;
+$gray: #bbb;
+$gray-5d: #5d5d5d;
+// blue button colors
+$white-btn-txt: #f1f1f1;
+$blue-btn-bg: #13aff0;
+$blue-btn-b: #0e9fdc;
+$blue-btn-bg-h: #0c8ec4;
+$blue-btn-b-h: #0a75a2;
+// dark button colors
+$dark-btn-bg: $gray2;
+
+// $dark-btn-bg: #292929;
+$dark-btn-b: $gray-5d;
+$dark-btn-bg-h: #100f0f;
+$dark-btn-b-h: #3e3e3e;
+//
+$red-input-b: #c00;
+$red-input-bs: #f66;
+
+@mixin btn(
+  $bg: $blue-btn-bg,
+  $b: $blue-btn-b,
+  $bg-h: $blue-btn-bg-h,
+  $b-h: $blue-btn-b-h
+) {
+  color: $white;
+  background-color: $bg;
+  border-color: $b;
+  font-weight: 400;
+  text-align: center;
+  vertical-align: middle;
+  border: 1px solid transparent;
+  cursor: pointer;
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.65;
+  }
+
+  padding: 5px 10px;
+  font-size: 12px;
+  line-height: 1.5;
+  border-radius: 3px;
+  text-decoration: none;
+  transition: background-color 0.2s linear, color 0.2s linear,
+    border-color 0.2s linear;
+
+  &:hover:not([disabled]) {
+    background-color: $bg-h;
+    border-color: $b-h;
+  }
+}
+
+@mixin icon {
+  padding-right: 0.4em;
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 900;
+  display: inline-block;
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+}
